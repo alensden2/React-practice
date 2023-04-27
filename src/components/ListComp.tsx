@@ -1,7 +1,11 @@
+import './ListComp.css'
+
 // following pascal casing
 function ListComp() {
-  const fruits = ['apple', 'banana', 'orange', 'strawberry', 'blueberry']
-  
+  const fruits = ['apple', 'banana', 'orange', 'strawberry', 'blueberry'];
+  let selectFruit = 0;
+
+  const handleClick = (event : MouseEvent) => {console.log(event)};
   //const fruits: string[] = ['apple', 'banana', 'orange', 'strawberry', 'blueberry'];
 
   return (
@@ -21,8 +25,14 @@ function ListComp() {
       <h1>List</h1>
       {fruits.length === 0 && <p>No items found</p>}
       <ul className="list-group">
-        {fruits.map((fruit) => (
-          <li key={fruit}>{fruit}</li>
+        {fruits.map((fruit, index) => (
+          <li 
+            className={selectFruit === index ? "list-group-item" : ""}
+            key={fruit}
+            onClick={() => console.log(fruit)}
+            >
+            {fruit}
+          </li>
         ))}
       </ul>
     </>
