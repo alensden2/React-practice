@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import './ListComp.css'
 
-
 interface Props {
-    fruits : string[];
-    heading : string;
+  fruits: string[]
+  heading: string
+  onSelectedFruit: (fruit: string) => void
 }
 // following pascal casing
-function ListComp({fruits, heading} : Props) {
+function ListComp({ fruits, heading, onSelectedFruit }: Props) {
+  const [selectFruit, setSelectFruit] = useState(-1)
 
-  const [selectFruit, setSelectFruit] = useState(-1);
-
-
-  const handleClick = (event : MouseEvent) => {console.log(event)};
+  const handleClick = (event: MouseEvent) => {
+    console.log(event)
+  }
   //const fruits: string[] = ['apple', 'banana', 'orange', 'strawberry', 'blueberry'];
 
   return (
@@ -33,11 +33,14 @@ function ListComp({fruits, heading} : Props) {
       {fruits.length === 0 && <p>No items found</p>}
       <ul className="list-group">
         {fruits.map((fruit, index) => (
-          <li 
-            className={selectFruit === index ? "list-group-item" : ""}
+          <li
+            className={selectFruit === index ? 'list-group-item' : ''}
             key={fruit}
-            onClick={() => {setSelectFruit(index)}}
-            >
+            onClick={() => {
+              setSelectFruit(index)
+              onSelectedFruit(fruit)  
+            }}
+          >
             {fruit}
           </li>
         ))}
