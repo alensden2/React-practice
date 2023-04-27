@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import './ListComp.css'
 
+
+interface Props {
+    fruits : string[];
+    heading : string;
+}
 // following pascal casing
-function ListComp() {
-  const fruits = ['apple', 'banana', 'orange', 'strawberry', 'blueberry'];
+function ListComp({fruits, heading} : Props) {
+
   const [selectFruit, setSelectFruit] = useState(-1);
 
 
@@ -24,7 +29,7 @@ function ListComp() {
     // </>
 
     <>
-      <h1>List</h1>
+      <h1>{heading}</h1>
       {fruits.length === 0 && <p>No items found</p>}
       <ul className="list-group">
         {fruits.map((fruit, index) => (
