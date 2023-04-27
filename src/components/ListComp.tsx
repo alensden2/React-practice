@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import './ListComp.css'
 
 // following pascal casing
 function ListComp() {
   const fruits = ['apple', 'banana', 'orange', 'strawberry', 'blueberry'];
-  let selectFruit = 0;
+  const [selectFruit, setSelectFruit] = useState(-1);
+
 
   const handleClick = (event : MouseEvent) => {console.log(event)};
   //const fruits: string[] = ['apple', 'banana', 'orange', 'strawberry', 'blueberry'];
@@ -29,7 +31,7 @@ function ListComp() {
           <li 
             className={selectFruit === index ? "list-group-item" : ""}
             key={fruit}
-            onClick={() => console.log(fruit)}
+            onClick={() => {setSelectFruit(index)}}
             >
             {fruit}
           </li>
